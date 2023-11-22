@@ -1,0 +1,4 @@
+{
+    "keys": ["ctrl+shift+1"],
+    "command": "run_javascript_macro"
+}
