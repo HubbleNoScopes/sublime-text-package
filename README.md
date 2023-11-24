@@ -20,19 +20,31 @@ Contact
 https://github.com/HubbleNoScopes
 https://github.com/HubbleNoScopes/sublime-text-package
 
-String Literal Validation Functions:
+Validation Functions:
 
-validateSingleQuotedString: Attempts to evaluate a provided string as a JavaScript expression within single quotes.
-validateDoubleQuotedString: Checks if the value inside double quotes contains only alphanumeric characters.
-Main Function convertStringLiterals:
+validateSingleQuotedString(value): Attempts to evaluate the provided string as a JavaScript expression within single quotes. Returns true if successful, false if there is an error.
+validateDoubleQuotedString(value): Checks if the value inside double quotes contains only alphanumeric characters. Returns true if the value is valid, false otherwise.
+Conversion Function (convertStringLiterals):
 
-Reads the content of a file specified by the filePath parameter.
-Uses a regular expression to match string literals in the file.
-Processes each match, checking if it's a single- or double-quoted literal and validates accordingly.
-If validation fails, it converts the invalid literal and displays an error message using Sublime Text's sublime.error_message.
-If no errors are found, it displays a success message using sublime.message_dialog.
-Replaces the content in the active Sublime Text view.
-Automated Run:
+Reads the content of a file specified by the filePath.
+Defines a regular expression (stringLiteralRegex) to match string literals (both single-quoted and double-quoted).
+Processes each match found by the regular expression:
+Checks if it's a single-quoted literal and validates it using validateSingleQuotedString.
+If validation fails, displays an error message and leaves the string unchanged.
+Checks if it's a double-quoted literal and validates it using validateDoubleQuotedString.
+If validation fails, displays an error message and leaves the string unchanged.
+If no validation errors occur, leaves the string unchanged.
+Display Error Messages:
 
-Calls convertStringLiterals with the file path 'YourMacro.js'
-The validation aims to ensure that the string literals are correctly formatted JavaScript expressions. If there are errors, it provides error messages, and if successful, it displays a success message.
+If there are validation errors during the processing of string literals, it sets the hasErrors flag to true.
+Displays error messages using sublime.error_message for each invalid string literal.
+Display Success Message:
+
+If there are no validation errors (hasErrors is false), it displays a success message using sublime.message_dialog.
+Insert Changes into the Active View:
+
+If there are no validation errors, it replaces the content in the active Sublime Text view with the modified content.
+Automatically Run the Conversion:
+
+The entire process is automatically triggered by calling convertStringLiterals('YourMacro.js') at the end.
+So, in summary, the code reads a JavaScript file, validates and potentially modifies its string literals, displays appropriate messages, and updates the active Sublime Text view if there are no validation errors.
