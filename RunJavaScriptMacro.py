@@ -6,6 +6,7 @@ print("My JavaScript Macro package loaded successfully!")
 
 class RunJavaScriptMacroCommand(sublime_plugin.TextCommand):
     def run(self, edit):
+        print("Run method is executing...")
         # Get the content of the active Sublime Text view
         content = self.view.substr(sublime.Region(0, self.view.size()))
 
