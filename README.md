@@ -32,5 +32,5 @@ If no errors are found, it displays a success message using sublime.message_dial
 Replaces the content in the active Sublime Text view.
 Automated Run:
 
-Calls convertStringLiterals with the file path 'YourMacro.js' (presumably, this is the file you want to process).
-This script seems designed to run in a Sublime Text environment to validate and convert string literals in a JavaScript file. The validation aims to ensure that the string literals are correctly formatted JavaScript expressions. If there are errors, it provides error messages, and if successful, it displays a success message.
+Calls convertStringLiterals with the file path 'YourMacro.js'
+The validation aims to ensure that the string literals are correctly formatted JavaScript expressions. If there are errors, it provides error messages, and if successful, it displays a success message.
