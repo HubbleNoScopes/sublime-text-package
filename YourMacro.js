@@ -30,18 +30,18 @@ function convertStringLiterals(filePath) {
     // Check if it's a single-quoted literal
     if (quote === "'") {
       if (!validateSingleQuotedString(content)) {
-        // Convert to double-quoted literal
+        // Display an error message without making changes
         hasErrors = true;
         sublime.error_message(`Invalid single-quoted string literal: ${content}`);
-        return `"${content}"`;
+        return match;
       }
     } else {
       // Check if it's a double-quoted literal
       if (!validateDoubleQuotedString(content)) {
-        // Convert to single-quoted literal
+        // Display an error message without making changes
         hasErrors = true;
         sublime.error_message(`Invalid double-quoted string literal: ${content}`);
-        return `'${content}'`;
+        return match;
       }
     }
     // No conversion needed
@@ -50,11 +50,10 @@ function convertStringLiterals(filePath) {
 
   if (!hasErrors) {
     sublime.message_dialog('String literals converted successfully!');
+    // Replace the content in the active Sublime Text view
+    const activeView = sublime.active_window().active_view();
+    activeView.run_command("insert", {"characters": fileContent});
   }
-
-  // Replace the content in the active Sublime Text view
-  const activeView = sublime.active_window().active_view();
-  activeView.run_command("insert", {"characters": fileContent});
 }
 
 // Automatically run the conversion on the provided file
