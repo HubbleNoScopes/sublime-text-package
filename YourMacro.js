@@ -1,7 +1,3 @@
-//redefine string literals with string parsing and string validation methods. 
-//single quote string literals accept the vaues of all JS
-//double quote string literals only accept the values of alphanumerics.
-
 // Function to validate single-quoted string literals
 function validateSingleQuotedString(value) {
   try {
@@ -18,21 +14,6 @@ function validateDoubleQuotedString(value) {
   // Check if the value inside double quotes contains only alphanumeric characters
   return /^"[\w\s]*"$/.test(value);
 }
-
-// Examples of usage
-let singleQuotedExample1 = "'Hello, World!'";
-let singleQuotedExample2 = "'function sayHello() { console.log(\"Hello!\"); }'";
-
-let doubleQuotedExample1 = '"Alpha123"';
-let doubleQuotedExample2 = '"Special@Chars"';
-
-console.log(validateSingleQuotedString(singleQuotedExample1)); // Outputs: true
-console.log(validateSingleQuotedString(singleQuotedExample2)); // Outputs: true
-
-console.log(validateDoubleQuotedString(doubleQuotedExample1)); // Outputs: true
-console.log(validateDoubleQuotedString(doubleQuotedExample2)); // Outputs: false
-
-
 
 const fs = require('fs');
 
@@ -66,5 +47,5 @@ function convertStringLiterals(filePath) {
   activeView.run_command("insert", {"characters": fileContent});
 }
 
-// Example usage
+// Automatically run the conversion on the provided file
 convertStringLiterals('your_file.js');
