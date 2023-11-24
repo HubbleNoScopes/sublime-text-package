@@ -16,9 +16,11 @@ function validateDoubleQuotedString(value) {
 }
 
 const fs = require('fs');
+const sublime = require('sublime');
 
 function convertStringLiterals(filePath) {
   let fileContent = fs.readFileSync(filePath, 'utf-8');
+  let hasErrors = false;
 
   // Regular expression to match string literals
   const stringLiteralRegex = /(['"])(.*?)\1/g;
@@ -29,18 +31,26 @@ function convertStringLiterals(filePath) {
     if (quote === "'") {
       if (!validateSingleQuotedString(content)) {
         // Convert to double-quoted literal
+        hasErrors = true;
+        sublime.error_message(`Invalid single-quoted string literal: ${content}`);
         return `"${content}"`;
       }
     } else {
       // Check if it's a double-quoted literal
       if (!validateDoubleQuotedString(match)) {
         // Convert to single-quoted literal
+        hasErrors = true;
+        sublime.error_message(`Invalid double-quoted string literal: ${content}`);
         return `'${content}'`;
       }
     }
     // No conversion needed
     return match;
   });
+
+  if (!hasErrors) {
+    sublime.message_dialog('String literals converted successfully!');
+  }
 
   // Replace the content in the active Sublime Text view
   const activeView = sublime.active_window().active_view();
