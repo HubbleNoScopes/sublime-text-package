@@ -15,10 +15,10 @@ no current keybind confliction..
 
 Read, Write, Edit - Please
 https://github.com/users/HubbleNoScopes/projects/4
+https://github.com/HubbleNoScopes/sublime-text-package
 
 Contact
 https://github.com/HubbleNoScopes
-https://github.com/HubbleNoScopes/sublime-text-package
 
 Validation Functions:
 
