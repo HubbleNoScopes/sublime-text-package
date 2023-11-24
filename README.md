@@ -17,3 +17,20 @@ https://github.com/users/HubbleNoScopes/projects/4
 Contact
 https://github.com/HubbleNoScopes
 https://github.com/HubbleNoScopes/sublime-text-package
+
+String Literal Validation Functions:
+
+validateSingleQuotedString: Attempts to evaluate a provided string as a JavaScript expression within single quotes.
+validateDoubleQuotedString: Checks if the value inside double quotes contains only alphanumeric characters.
+Main Function convertStringLiterals:
+
+Reads the content of a file specified by the filePath parameter.
+Uses a regular expression to match string literals in the file.
+Processes each match, checking if it's a single- or double-quoted literal and validates accordingly.
+If validation fails, it converts the invalid literal and displays an error message using Sublime Text's sublime.error_message.
+If no errors are found, it displays a success message using sublime.message_dialog.
+Replaces the content in the active Sublime Text view.
+Automated Run:
+
+Calls convertStringLiterals with the file path 'YourMacro.js' (presumably, this is the file you want to process).
+This script seems designed to run in a Sublime Text environment to validate and convert string literals in a JavaScript file. The validation aims to ensure that the string literals are correctly formatted JavaScript expressions. If there are errors, it provides error messages, and if successful, it displays a success message.
