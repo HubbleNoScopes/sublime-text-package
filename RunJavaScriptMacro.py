@@ -18,6 +18,7 @@ class RunJavaScriptMacroCommand(sublime_plugin.TextCommand):
             sublime.status_message('Invalid string literals: {}'.format(e))
 
     def is_enabled(self):
+        print("is_enabled method is executing...")
         # Enable the command only for JavaScript files
         return self.view.match_selector(0, 'source.js')
 
