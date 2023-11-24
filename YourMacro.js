@@ -37,7 +37,7 @@ function convertStringLiterals(filePath) {
       }
     } else {
       // Check if it's a double-quoted literal
-      if (!validateDoubleQuotedString(match)) {
+      if (!validateDoubleQuotedString(content)) {
         // Convert to single-quoted literal
         hasErrors = true;
         sublime.error_message(`Invalid double-quoted string literal: ${content}`);
@@ -58,4 +58,4 @@ function convertStringLiterals(filePath) {
 }
 
 // Automatically run the conversion on the provided file
-convertStringLiterals('your_file.js');
+convertStringLiterals('YourMacro.js');
