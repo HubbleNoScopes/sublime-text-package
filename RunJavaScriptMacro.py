@@ -1,6 +1,7 @@
 import sublime
 import sublime_plugin
 import os
+import subprocess
 
 class RunJavaScriptMacroCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -12,14 +13,11 @@ class RunJavaScriptMacroCommand(sublime_plugin.TextCommand):
 
         # Check if the JavaScript macro file and JSON config file exist
         if os.path.exists(js_macro_file) and os.path.exists(json_config_file):
-            # Print a message indicating successful execution
-            print('JavaScript macro executed successfully!')
-
-            # Read and print the content of the JSON config file
-            with open(json_config_file, 'r') as json_file:
-                json_content = json_file.read()
-                print('Content of config.json: {}'.format(json_content))
-
-            sublime.message_dialog('JavaScript macro executed successfully!')
+            # Execute the JavaScript macro using Node.js subprocess
+            try:
+                subprocess.run(['node', js_macro_file], check=True)
+                sublime.message_dialog('String literals converted successfully!')
+            except subprocess.CalledProcessError as e:
+                sublime.error_message(f'Error executing JavaScript macro:\n{e.stderr.decode()}')
         else:
             sublime.error_message('JavaScript macro or JSON config file not found!')
