@@ -12,7 +12,7 @@ class RunJavaScriptMacroCommand(sublime_plugin.TextCommand):
             ast.parse(content, mode='eval')
             sublime.status_message('String literals are valid.')
         except SyntaxError as e:
-            sublime.status_message(f'Invalid string literals: {e}')
+            sublime.status_message('Invalid string literals: {}'.format(e))
 
     def is_enabled(self):
         # Enable the command only for JavaScript files
