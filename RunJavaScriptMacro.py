@@ -5,19 +5,12 @@ import subprocess
 
 class RunJavaScriptMacroCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        # Specify the path to your JavaScript macro file
-        js_macro_file = os.path.join(sublime.packages_path(), 'User', 'YourMacro.js')
+        # Get the content of the active Sublime Text view
+        content = self.view.substr(sublime.Region(0, self.view.size()))
 
-        # Specify the path to your JSON configuration file
-        json_config_file = os.path.join(sublime.packages_path(), 'User', 'config.json')
-
-        # Check if the JavaScript macro file and JSON config file exist
-        if os.path.exists(js_macro_file) and os.path.exists(json_config_file):
-            # Execute the JavaScript macro using Node.js subprocess
-            try:
-                subprocess.run(['node', js_macro_file], check=True)
-                sublime.message_dialog('String literals converted successfully!')
-            except subprocess.CalledProcessError as e:
-                sublime.error_message(f'Error executing JavaScript macro:\n{e.stderr.decode()}')
-        else:
-            sublime.error_message('JavaScript macro or JSON config file not found!')
+        # Check if there are string literal errors using the Node.js subprocess
+        try:
+            subprocess.run(['node', '-e', content], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sublime.status_message('String literals are valid.')
+        except subprocess.CalledProcessError as e:
+            sublime.status_message(f'Invalid string literals: {e.stderr.decode()}')
