@@ -1,6 +1,8 @@
 # sublime-text-package
 
-Sublime editor package is working "sublime-text-package"
+Sublime editor package is downloadable "sublime-text-package"
+
+This project is still being developed. Package does not have auto-updater and requires redownload with every update.
 
 String literal re-define scan and authenticate with validation
 
