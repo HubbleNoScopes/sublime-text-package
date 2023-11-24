@@ -2,6 +2,8 @@ import sublime
 import sublime_plugin
 import ast
 
+print("My JavaScript Macro package loaded successfully!")
+
 class RunJavaScriptMacroCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         # Get the content of the active Sublime Text view
