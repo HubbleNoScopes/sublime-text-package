@@ -18,7 +18,7 @@ class RunJavaScriptMacroCommand(sublime_plugin.TextCommand):
             # Read and print the content of the JSON config file
             with open(json_config_file, 'r') as json_file:
                 json_content = json_file.read()
-                print(f'Content of config.json: {json_content}')
+                print('Content of config.json: {}'.format(json_content))
 
             sublime.message_dialog('JavaScript macro executed successfully!')
         else:
