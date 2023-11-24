@@ -2,6 +2,8 @@ String literal re-define scan and authenticate with validation
 # sublime-text-package
 Sublime editor package is downloadable "sublime-text-package"
 
+initial purpose of package was to add layer of security to javascript. Currently string literals are interchangeable. Re-defining them will cause an error if given incorrect characters.
+
 Project-in-development. No auto-update & must-reinstall package.
 
 I cannot figure out why the keybinding is not running the macro.
